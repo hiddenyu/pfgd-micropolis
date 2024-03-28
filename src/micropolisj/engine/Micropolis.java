@@ -125,6 +125,7 @@ public class Micropolis
 	int nuclearCount;
 	int seaportCount;
 	int airportCount;
+	int solarCount;
 
 	int totalPop;
 	int lastCityPop;
@@ -538,6 +539,7 @@ public class Micropolis
 		nuclearCount = 0;
 		seaportCount = 0;
 		airportCount = 0;
+		solarCount = 0;
 		powerPlants.clear();
 
 		for (int y = 0; y < fireStMap.length; y++) {
@@ -967,6 +969,7 @@ public class Micropolis
 				isConductive(t) &&
 				t != NUCLEAR &&
 				t != POWERPLANT &&
+				t != SOLAR &&
 				!hasPower(loc.x, loc.y)
 				);
 		}
@@ -1031,7 +1034,7 @@ public class Micropolis
 		// of powerplants connected to your city.
 		//
 
-		int maxPower = coalCount * 700 + nuclearCount * 2000;
+		int maxPower = coalCount * 700 + nuclearCount * 2000 + solarCount * 525;
 		int numPower = 0;
 
 		// This is kind of odd algorithm, but I haven't the heart to rewrite it at
@@ -1467,6 +1470,7 @@ public class Micropolis
 		bb.put("STADIUM_FULL", new MapScanner(this, MapScanner.B.STADIUM_FULL));
 		bb.put("AIRPORT", new MapScanner(this, MapScanner.B.AIRPORT));
 		bb.put("SEAPORT", new MapScanner(this, MapScanner.B.SEAPORT));
+		bb.put("SOLAR", new MapScanner(this, MapScanner.B.SOLAR));
 
 		this.tileBehaviors = bb;
 	}
@@ -2095,6 +2099,7 @@ public class Micropolis
 	{
 		coalCount = 0;
 		nuclearCount = 0;
+		solarCount = 0;
 
 		powerPlants.clear();
 		for (int y = 0; y < map.length; y++) {
@@ -2106,6 +2111,10 @@ public class Micropolis
 				}
 				else if (tile == POWERPLANT) {
 					coalCount++;
+					powerPlants.add(new CityLocation(x,y));
+				}
+				else if (tile == SOLAR) {
+					solarCount++;
 					powerPlants.add(new CityLocation(x,y));
 				}
 			}
@@ -2519,7 +2528,7 @@ public class Micropolis
 		checkGrowth();
 
 		int totalZoneCount = resZoneCount + comZoneCount + indZoneCount;
-		int powerCount = nuclearCount + coalCount;
+		int powerCount = nuclearCount + coalCount + solarCount;
 
 		int z = cityTime % 64;
 		switch (z) {
