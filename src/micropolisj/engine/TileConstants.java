@@ -153,6 +153,7 @@ public class TileConstants
 	public static final char LAST_TILE = 956;
 	static final char SOLAR = 965;
 	static final char WIND = 981;
+	static final char DAM = 998;
 
 	static final char [] RoadTable = new char[] {
 		ROADS, ROADS2, ROADS, ROADS3,
