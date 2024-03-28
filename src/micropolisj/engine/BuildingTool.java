@@ -55,6 +55,9 @@ class BuildingTool extends ToolStroke
 		case SOLAR:
 			return applyZone(eff, SOLAR);
 
+		case WIND:
+			return applyZone(eff, WIND);
+			
 		default:
 			// not expected
 			throw new Error("unexpected tool: "+tool);

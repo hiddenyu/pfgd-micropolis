@@ -30,6 +30,7 @@ public enum MicropolisTool
 	NUCLEAR(4, 5000),
 	AIRPORT(6, 10000),
 	SOLAR(4, 2000),
+	WIND(4, 3500),
 	QUERY(1, 0);
 
 	int size;
@@ -70,6 +71,7 @@ public enum MicropolisTool
 		case NUCLEAR:
 		case AIRPORT:
 		case SOLAR:
+		case WIND:
 			return new BuildingTool(engine, this, xpos, ypos);
 
 		default:

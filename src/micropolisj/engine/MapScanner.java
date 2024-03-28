@@ -42,7 +42,8 @@ class MapScanner extends TileBehavior
 		STADIUM_FULL,
 		AIRPORT,
 		SEAPORT,
-		SOLAR;
+		SOLAR,
+		WIND;
 	}
 
 	@Override
@@ -86,6 +87,8 @@ class MapScanner extends TileBehavior
 			doSeaport();
 		case SOLAR:
 			doSolarPower();
+		case WIND:
+			doWindPower();
 			return;
 		default:
 			assert false;
@@ -115,6 +118,7 @@ class MapScanner extends TileBehavior
 			tile == NUCLEAR ||
 			tile == POWERPLANT ||
 			tile == SOLAR ||
+			tile == WIND ||
 			city.hasPower(xpos,ypos)
 			);
 
@@ -214,6 +218,17 @@ class MapScanner extends TileBehavior
 		city.solarCount++;
 		if ((city.cityTime % 8) == 0) {
 			repairZone(SOLAR, 4);
+		}
+
+		city.powerPlants.add(new CityLocation(xpos,ypos));
+	}
+	
+	void doWindPower()
+	{
+		boolean powerOn = checkZonePower();
+		city.windCount++;
+		if ((city.cityTime % 8) == 0) {
+			repairZone(WIND, 4);
 		}
 
 		city.powerPlants.add(new CityLocation(xpos,ypos));
