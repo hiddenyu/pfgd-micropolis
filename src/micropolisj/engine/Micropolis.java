@@ -1178,16 +1178,6 @@ public class Micropolis
 								continue;
 							}
 							plevel += getPollutionValue(tile);
-							
-							if (tile == SOLAR) {
-								System.out.print("solar");
-								System.out.println(getPollutionValue(tile));
-							}
-							if (tile == POWERPLANT) {
-								System.out.print("coal");
-								System.out.println(getPollutionValue(tile));
-							}
-							
 							if (isConstructed(tile))
 								lvflag++;
 						}
@@ -2414,7 +2404,7 @@ public class Micropolis
 			int x = PRNG.nextInt(getWidth());
 			int y = PRNG.nextInt(getHeight());
 			int tile = getTile(x, y);
-			if (isRiverEdge(tile))
+			if (isRiverEdge(tile) || isDam(tile))
 			{
 				for (int t = 0; t < 4; t++) {
 					int xx = x + DX[t];
