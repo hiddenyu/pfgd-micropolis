@@ -86,10 +86,13 @@ class MapScanner extends TileBehavior
 			return;
 		case SEAPORT:
 			doSeaport();
+			return;
 		case SOLAR:
 			doSolarPower();
+			return;
 		case WIND:
 			doWindPower();
+			return;
 		case DAM:
 			doDamPower();
 			return;
