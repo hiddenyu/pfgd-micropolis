@@ -388,11 +388,11 @@ public class TileConstants
 		return tile >= FIRSTRIVEDGE && tile <= LASTRIVEDGE;
 	}
 	
-	static boolean isDam(int tile)
+	static boolean isDamEdge(int tile)
 	{
 		assert (tile & LOMASK) == tile;
-
-		return tile >= 992 && tile <= 1016;
+		// test if tile is a dam edge tile
+		return (tile >= 992 && tile <= 997) || (tile == 1001) || (tile == 1002) || (tile == 1006) || (tile == 1007) || (tile >= 1011 && tile <= 1016);
 	}
 
 	public static boolean isDozeable(int tile)

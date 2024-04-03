@@ -2404,7 +2404,7 @@ public class Micropolis
 			int x = PRNG.nextInt(getWidth());
 			int y = PRNG.nextInt(getHeight());
 			int tile = getTile(x, y);
-			if (isRiverEdge(tile) || isDam(tile))
+			if (isRiverEdge(tile) || isDamEdge(tile))
 			{
 				for (int t = 0; t < 4; t++) {
 					int xx = x + DX[t];
