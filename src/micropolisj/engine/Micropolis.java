@@ -2308,7 +2308,7 @@ public class Micropolis
 			int tile = getTile(x, y);
 			if (!isZoneCenter(tile) && isCombustible(tile))
 			{
-				if (tile > 21 && tile < LASTZONE) {
+				if ((tile > 21 && tile < LASTZONE) || (tile > 975 && tile < 992)) {
 					setTile(x, y, (char)(FIRE + PRNG.nextInt(8)));
 					sendMessageAt(MicropolisMessage.FIRE_REPORT, x, y);
 					return;
