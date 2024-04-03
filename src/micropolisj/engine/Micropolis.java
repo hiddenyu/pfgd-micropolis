@@ -1178,18 +1178,28 @@ public class Micropolis
 								continue;
 							}
 							plevel += getPollutionValue(tile);
+							
+							if (tile == SOLAR) {
+								System.out.print("solar");
+								System.out.println(getPollutionValue(tile));
+							}
+							if (tile == POWERPLANT) {
+								System.out.print("coal");
+								System.out.println(getPollutionValue(tile));
+							}
+							
 							if (isConstructed(tile))
 								lvflag++;
 						}
 					}
 				}
-
-				if (plevel < 0)
-					plevel = 250; //?
+				
+//				if (plevel < 0)
+//					plevel = 0; // changed from 250 to 0
 
 				if (plevel > 255)
 					plevel = 255;
-
+				
 				tem[y][x] = plevel;
 
 				if (lvflag != 0)
@@ -1251,7 +1261,7 @@ public class Micropolis
 		}
 
 		pollutionAverage = pcount != 0 ? (ptotal / pcount) : 0;
-
+		
 		terrainMem = smoothTerrain(qtem);
 
 		fireMapOverlayDataChanged(MapState.POLLUTE_OVERLAY);   //PLMAP
